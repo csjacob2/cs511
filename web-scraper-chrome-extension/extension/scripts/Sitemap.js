@@ -237,7 +237,37 @@ Sitemap.prototype = {
 
 
 function drawTable (postData, curConstraints) {
+	$('#viewport').html('<table id="masterTable"></table>');
 
+    var tempData = 'model\tcompany\tcolor\ttype\tsize\tport\to\nWD2500AAJS WD2500AAJS\tWestern Digital\tCaviar Blue\t\t\t\tHard Drive\nMy Passport Ultra\tWD\tBlack\tPortable External\t1 TB\tUSB 3.0\t(Old Model) Hard Drive with Auto Backup';
+
+
+    var rows = tempData.split('\n');                        // create array of rows
+    var headerRowTemp = rows[0].split('\t');             // create header row into array of titles
+    var headerRow = [];
+    var dataRow = [];
+
+    $.each(headerRowTemp, function(index, value){
+        headerRow[index] = {};
+        headerRow[index]['title'] = value;
+    });
+
+    for (i = 0; i < rows.length-1; i++) {
+        dataRow[i] = rows[i+1].split('\t');
+    }
+
+    if ( $.fn.DataTable.isDataTable('#masterTable') ) {
+        $('#masterTable').DataTable().destroy();
+    }
+    $('#masterTable').empty();
+    var masterTable = $('#masterTable').DataTable( {
+        data: dataRow,
+        columns: headerRow
+	});
+
+	$('#viewport').append(masterTable);
+
+    alert('end of on doc');
 
 /*
     $('#long_container_all_table').remove();
@@ -247,6 +277,8 @@ function drawTable (postData, curConstraints) {
     $('#spreadsheet_minimize_button').colorbox({inline:true, href:$('#masterTable_container_long'), width:"90%"});
 */
 
+
+	/*
     var request = {
         displayTable: true
     };
@@ -257,7 +289,7 @@ function drawTable (postData, curConstraints) {
         alert ('end sendMessage');
 
     });
-
+*/
 
 
 
