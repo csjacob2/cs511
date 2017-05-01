@@ -205,7 +205,6 @@ Sitemap.prototype = {
 	},
 
 
-
     //new feature for CS511
     pushDataToLabeler: function (data) {
         var columns = this.getDataColumns();
@@ -239,10 +238,31 @@ Sitemap.prototype = {
 
 function drawTable (postData, curConstraints) {
 
-    alert('draw table');
 
-    //$('#cboxLoadingOverlay, #cboxLoadingGraphic').show();
-    // console.log($('#cboxLoadingGraphic').size());
+/*
+    $('#long_container_all_table').remove();
+    $('#spreadsheet_minimize_button').remove();
+    $(document.body).append('<div id="long_container_all_table" style="display:none"><div id="masterTable_container_long"> <table id="masterTable" class="display" width="100%"></table>Suggested constraints: <div id="constraints_long"></div> <button id="apply-constraints"> Apply constraints and reload table!</button> </div></div>');
+    $(document.body).append('<button id="spreadsheet_minimize_button" style="display:none">Retrieve The Previous Publication Spreadsheet</button>');
+    $('#spreadsheet_minimize_button').colorbox({inline:true, href:$('#masterTable_container_long'), width:"90%"});
+*/
+
+    var request = {
+        displayTable: true
+    };
+    chrome.runtime.sendMessage(request, function (response) {
+
+        callback(response);
+
+        alert ('end sendMessage');
+
+    });
+
+
+
+
+
+
 
     /*
     // send postData to server
@@ -261,27 +281,4 @@ function drawTable (postData, curConstraints) {
     });
      */
 
-    var tempData = 'model\tcompany\tcolor\ttype\tsize\tport\to\nWD2500AAJS WD2500AAJS\tWestern Digital\tCaviar Blue\t\t\tHard Drive\nMy Passport Ultra\tWD\tBlack\tPortable External\t1 TB\tUSB 3.0\t(Old Model) Hard Drive with Auto Backup';
-
-    var rows = tempData.split('\n');                // create array of rows
-    var headerRow = rows[0].split('\t');             // create header row into array of titles
-    var dataRow = [];
-    var printout = '';
-
-    $.each(headerRow, function(index, value){
-        //printout+=value + '\n';
-        //print out header row
-    });
-
-    for (i = 1; i < rows.length; i++) {
-        printout = '';
-        dataRow[i] = rows[i].split('\t');
-        $.each(dataRow, function(index,value){
-           printout+=value + ' \n';
-        });
-    }
-
-    alert (printout);
-
-    alert('end of function');
 }
