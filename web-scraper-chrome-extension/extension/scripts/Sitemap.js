@@ -213,7 +213,7 @@ Sitemap.prototype = {
 
         data.forEach(function (row) {
             columns.forEach(function(column) {
-                string += row[column] + ' ';
+                string += row[column] + '\n';
             });
         });
         alert (string);
@@ -243,12 +243,45 @@ function drawTable (postData, curConstraints) {
 
     //$('#cboxLoadingOverlay, #cboxLoadingGraphic').show();
     // console.log($('#cboxLoadingGraphic').size());
-    $.post("http://kite.cs.illinois.edu/wdv/extractPubData.php", postData, function(data, status){
+
+    /*
+    // send postData to server
+    // return tokenized data
+    $.post("extractPubData.php", postData, function(data, status){
         alert("Data: " + data + "\nStatus: " + status);
-
-
-
-
-
     });
+    $.post( "http://foreverdarkness.ca/cs511/test.php", function() {
+        alert( "success");
+    })
+    .done(function() {
+        alert( "second success" );
+    })
+    .fail(function() {
+        alert( "error" );
+    });
+     */
+
+    var tempData = 'model\tcompany\tcolor\ttype\tsize\tport\to\nWD2500AAJS WD2500AAJS\tWestern Digital\tCaviar Blue\t\t\tHard Drive\nMy Passport Ultra\tWD\tBlack\tPortable External\t1 TB\tUSB 3.0\t(Old Model) Hard Drive with Auto Backup';
+
+    var rows = tempData.split('\n');                // create array of rows
+    var headerRow = rows[0].split('\t');             // create header row into array of titles
+    var dataRow = [];
+    var printout = '';
+
+    $.each(headerRow, function(index, value){
+        //printout+=value + '\n';
+        //print out header row
+    });
+
+    for (i = 1; i < rows.length; i++) {
+        printout = '';
+        dataRow[i] = rows[i].split('\t');
+        $.each(dataRow, function(index,value){
+           printout+=value + ' \n';
+        });
+    }
+
+    alert (printout);
+
+    alert('end of function');
 }

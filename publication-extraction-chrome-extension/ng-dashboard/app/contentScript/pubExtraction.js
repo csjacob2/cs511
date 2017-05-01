@@ -25,6 +25,12 @@ function drawTable(postData, curConstraints) {
 		// $('#colorbox').remove();
 		// $.colorbox({html:'<table id="pub_spreadsheet" class="display" width="70%"></table>'});
 		// $.colorbox({html:'<div> hello how are you </div>'});
+
+        //data is returned as:
+            // first line is header
+            // rows separated by new line
+            // tab separated items
+            // sorted into an array for populating table
 		var rows = data.split("\n");
 		var tmp = rows[0].split("\t");
 		var fields = [];
