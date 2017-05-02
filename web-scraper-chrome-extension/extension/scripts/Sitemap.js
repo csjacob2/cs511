@@ -215,12 +215,10 @@ Sitemap.prototype = {
                 string += row[column] + '\n';
             });
         });
-        alert (string);
         drawTable(string, []);
     },
 
-
-
+    
 	getSelectorById: function (selectorId) {
 		return this.selectors.getSelectorById(selectorId);
 	},
@@ -237,12 +235,28 @@ Sitemap.prototype = {
 
 
 function drawTable (postData, curConstraints) {
+
+    //create empty table in viewport to hold data
 	$('#viewport').html('<table id="masterTable"></table>');
 
+    //TODO: delete this temp data line
     var tempData = 'model\tcompany\tcolor\ttype\tsize\tport\to\nWD2500AAJS WD2500AAJS\tWestern Digital\tCaviar Blue\t\t\t\tHard Drive\nMy Passport Ultra\tWD\tBlack\tPortable External\t1 TB\tUSB 3.0\t(Old Model) Hard Drive with Auto Backup';
 
 
-    var rows = tempData.split('\n');                        // create array of rows
+/*
+     // send postData to server
+     // return tokenized data
+     $.post("extractPubData.php", postData, function(data, status){
+     $.post( "http://foreverdarkness.ca/cs511/test.php", function() {
+     alert("Data: " + data + "\nStatus: " + status);
+     alert( "success");
+*/
+
+    //TODO: send postData to server
+    // output is returned as a variable (data)
+    // process data in this next block
+
+    var rows = tempData.split('\n');                     // create array of rows
     var headerRowTemp = rows[0].split('\t');             // create header row into array of titles
     var headerRow = [];
     var dataRow = [];
@@ -256,6 +270,7 @@ function drawTable (postData, curConstraints) {
         dataRow[i] = rows[i+1].split('\t');
     }
 
+    // create dataTable object
     if ( $.fn.DataTable.isDataTable('#masterTable') ) {
         $('#masterTable').DataTable().destroy();
     }
@@ -263,54 +278,20 @@ function drawTable (postData, curConstraints) {
     var masterTable = $('#masterTable').DataTable( {
         data: dataRow,
         columns: headerRow
-	});
+    });
 
-	$('#viewport').append(masterTable);
-
-    alert('end of on doc');
+    // populate table into viewport
+    $('#viewport').append(masterTable);
 
 /*
-    $('#long_container_all_table').remove();
-    $('#spreadsheet_minimize_button').remove();
-    $(document.body).append('<div id="long_container_all_table" style="display:none"><div id="masterTable_container_long"> <table id="masterTable" class="display" width="100%"></table>Suggested constraints: <div id="constraints_long"></div> <button id="apply-constraints"> Apply constraints and reload table!</button> </div></div>');
-    $(document.body).append('<button id="spreadsheet_minimize_button" style="display:none">Retrieve The Previous Publication Spreadsheet</button>');
-    $('#spreadsheet_minimize_button').colorbox({inline:true, href:$('#masterTable_container_long'), width:"90%"});
-*/
-
-
-	/*
-    var request = {
-        displayTable: true
-    };
-    chrome.runtime.sendMessage(request, function (response) {
-
-        callback(response);
-
-        alert ('end sendMessage');
-
-    });
-*/
-
-
-
-
-
-
-    /*
-    // send postData to server
-    // return tokenized data
-    $.post("extractPubData.php", postData, function(data, status){
-        alert("Data: " + data + "\nStatus: " + status);
-    });
-    $.post( "http://foreverdarkness.ca/cs511/test.php", function() {
-        alert( "success");
-    })
-    .done(function() {
+     })
+     .done(function() {
+        // might not need this
         alert( "second success" );
-    })
-    .fail(function() {
+     })
+     .fail(function() {
+        // might not need this
         alert( "error" );
-    });
-     */
-
+     });
+*/
 }

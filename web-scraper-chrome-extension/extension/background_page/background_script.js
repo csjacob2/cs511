@@ -56,23 +56,7 @@ chrome.runtime.onMessage.addListener(
 			store.getSitemapData(new Sitemap(request.sitemap), sendResponse);
 			return true;
 		}
-
-        else if (request.displayTable) {
-            chrome.tabs.create({
-                url: chrome.extension.getURL('../devtools/views/TableView.html'),
-                active: false
-            }, function(tab) {
-                // After the tab has been created, open a window to inject the tab
-                chrome.windows.create({
-                    tabId: tab.id,
-                    type: 'popup',
-                    focused: true
-                });
-            });
-        }
-
-
-    	else if (request.scrapeSitemap) {
+		else if (request.scrapeSitemap) {
 			var sitemap = new Sitemap(request.sitemap);
 			var queue = new Queue();
 			var browser = new ChromePopupBrowser({
