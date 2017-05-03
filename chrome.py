@@ -15,9 +15,9 @@ def hello():
     test.close()
     tokenizer("test.txt")
     # subprocess.call("perl -ne 'chomp; print \"$_\tO\n\"' test.tok > test.tsv", shell=True)
-    # subprocess.call("java -cp ../stanstanford-ner/-ner.jar ../stanford-ner/edu.stanford.nlp.ie.crf.CRFClassifier -prop hardDrive.prop", shell=True)
+    # subprocess.call("java -cp stanford-ner/-ner.jar stanford-ner/edu.stanford.nlp.ie.crf.CRFClassifier -prop hardDrive.prop", shell=True)
     subprocess.call(
-        "java -cp ../stanford-ner/stanford-ner.jar edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier ../ner-model.ser.gz -testFile test.tok > test.tok.txt",
+        "java -cp stanford-ner/stanford-ner.jar edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier ner-model.ser.gz -testFile test.tok > test.tok.txt",
         shell=True)
     data = parse("test.tok.txt")
     return data

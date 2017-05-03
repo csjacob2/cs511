@@ -1,7 +1,6 @@
 <!DOCTYPE html><html><head><title>TableView test</title></head>
 
 <script src="../../assets/jquery-2.0.3.js"></script>
-<script src="../../scripts/writeTable.js"></script>
 <script src="../../assets/datatables/datatables.js"></script>
 
 <script>
@@ -11,36 +10,44 @@
         drawTable();
     });
 
+
     function drawTable() {
         $('#viewport').html('<table id="masterTable"></table>');
 
-        var tempData = 'model\tcompany\tcolor\ttype\tsize\tport\to\nWD2500AAJS WD2500AAJS\tWestern Digital\tCaviar Blue\t\t\t\tHard Drive\nMy Passport Ultra\tWD\tBlack\tPortable External\t1 TB\tUSB 3.0\t(Old Model) Hard Drive with Auto Backup';
+        alert ('start');
+        var postData = "Samsung 850 EVO 250GB 2.5-Inch SATA III Internal SSD MZ75E250BAM";
 
+        $.post("http://127.0.0.1:5000/hello", postData, function(data, status) {
+            alert (data);
 
-        var rows = tempData.split('\n');                        // create array of rows
-        var headerRowTemp = rows[0].split('\t');             // create header row into array of titles
-        var headerRow = [];
-        var dataRow = [];
+            if ($.fn.DataTable.isDataTable('#masterTable')) {
+                $('#masterTable').DataTable().destroy();
+            }
+            /*        $('#masterTable').empty();
+             var masterTable = $('#masterTable').DataTable( {
+             data: dataRow,
+             columns: headerRow
+             });
 
-        $.each(headerRowTemp, function(index, value){
-            headerRow[index] = {};
-            headerRow[index]['title'] = value;
+            var masterTable = $('#masterTable').DataTable({
+                data: data,
+                columns: [
+                    {data: "company"},
+                    {data: "model"},
+                    {data: "size"},
+                    {data: "type"},
+                    {data: "port"},
+                    {data: "misc"},
+                    {data: "rate"},
+                    {data: "dimension"},
+                    {data: "speed"},
+                    {data: "color"}
+                ]
+            });
+            */
+            var masterTable  = '';
+            $('#viewport').append(masterTable);
         });
-
-        for (i = 0; i < rows.length-1; i++) {
-            dataRow[i] = rows[i+1].split('\t');
-        }
-
-        if ( $.fn.DataTable.isDataTable('#masterTable') ) {
-            $('#masterTable').DataTable().destroy();
-        }
-        $('#masterTable').empty();
-        var masterTable = $('#masterTable').DataTable( {
-            data: dataRow,
-            columns: headerRow
-        });
-
-        $('#viewport').append(masterTable);
     }
 
 </script>

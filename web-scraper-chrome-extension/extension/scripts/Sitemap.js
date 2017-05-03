@@ -218,7 +218,7 @@ Sitemap.prototype = {
         drawTable(string, []);
     },
 
-    
+
 	getSelectorById: function (selectorId) {
 		return this.selectors.getSelectorById(selectorId);
 	},
@@ -256,33 +256,52 @@ function drawTable (postData, curConstraints) {
     // output is returned as a variable (data)
     // process data in this next block
 
-    var rows = tempData.split('\n');                     // create array of rows
-    var headerRowTemp = rows[0].split('\t');             // create header row into array of titles
-    var headerRow = [];
-    var dataRow = [];
+    alert ('start');
+    var postData = "Samsung 850 EVO 250GB 2.5-Inch SATA III Internal SSD MZ75E250BAM";
 
-    $.each(headerRowTemp, function(index, value){
-        headerRow[index] = {};
-        headerRow[index]['title'] = value;
-    });
-
-    for (i = 0; i < rows.length-1; i++) {
-        dataRow[i] = rows[i+1].split('\t');
-    }
 
     // create dataTable object
     if ( $.fn.DataTable.isDataTable('#masterTable') ) {
         $('#masterTable').DataTable().destroy();
     }
     $('#masterTable').empty();
-    var masterTable = $('#masterTable').DataTable( {
-        data: dataRow,
-        columns: headerRow
+    $('#viewport').html('<table id="masterTable"></table>');
+
+
+    $.post("http://127.0.0.1:5000/hello", postData, function(data, status) {
+        alert(data);
+        $('#viewport').append(data);
+
+
+        /*        $('#masterTable').empty();
+         var masterTable = $('#masterTable').DataTable( {
+         data: dataRow,
+         columns: headerRow
+         });
+
+         var masterTable = $('#masterTable').DataTable({
+         data: data,
+         columns: [
+         {data: "company"},
+         {data: "model"},
+         {data: "size"},
+         {data: "type"},
+         {data: "port"},
+         {data: "misc"},
+         {data: "rate"},
+         {data: "dimension"},
+         {data: "speed"},
+         {data: "color"}
+         ]
+         });
+         */
+
+        var masterTable = '';
+
+        // populate table into viewport
+        $('#viewport').append(masterTable);
+
     });
-
-    // populate table into viewport
-    $('#viewport').append(masterTable);
-
 /*
      })
      .done(function() {
