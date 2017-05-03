@@ -1,4 +1,5 @@
 from flask import Flask, request
+from flask_cors import CORS, cross_origin
 from tokenizer import tokenizer
 from testParser import parse
 import subprocess
@@ -6,7 +7,15 @@ import subprocess
 app = Flask(__name__)
 
 
-@app.route("/hello", methods=['POST'])
+@app.after_request
+def after_request(response):
+  response.headers.add('Access-Control-Allow-Origin', '*')
+  response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+  response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+  return response
+
+data=[]
+@app.route("/hello", methods=['GET','POST'])
 def hello():
     print "In Server"
     data = request.stream.read()
@@ -20,6 +29,7 @@ def hello():
         "java -cp stanford-ner/stanford-ner.jar edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier ner-model.ser.gz -testFile test.tok > test.tok.txt",
         shell=True)
     data = parse("test.tok.txt")
+    print data
     return data
 
 
