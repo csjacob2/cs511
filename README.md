@@ -3,7 +3,6 @@ This tool selects the titles of **hard drives**, predicts the labels and display
 ## Mentor
 Long Tuan Pham
 ## Installation
-TODO: Describe the installation process
 1. Add extension to Chrome.
 2. Tools -> More tools -> Extensions
 3. Check “Developer Mode”
@@ -12,7 +11,6 @@ TODO: Describe the installation process
 6. Ensure “Enabled” is checked and “Collect errors” is disabled”
 
 ## Usage
-TODO: Write usage instructions
 1. To use: Navigate to [test site](http://webscraper.io/test-sites/e-commerce/allinone) for easy use first
 2. Open web tools (F12), then select “Web Scraper” tab:
 3. Click “Create new sitemap -> Create sitemap”, then enter a test name and the test URL from above, then click “Create Sitemap”.
@@ -36,8 +34,8 @@ Parent Selectors: _root (selected)
 
 6. Selecting “Element preview” in the Sitemap screen will highlight the elements that fit the selector criteria. Selecting “Data preview” will give a preliminary data scrape.
 7. To run the Scrape, select “Sitemap” (make sure your sitemap name is next to it in the main menu), then “Scrape”, then “Start scraping”. A list will be produced.
-8. In the main directory, do `python chrome.py` which will start the flask server. In the folder, also there's a trained model for 
- Then click on Send to Labeler which will return back the labelled json object for each product.
+8. In the main directory, do `python chrome.py portNumber` which will start the flask server.(Pass your own port number to start the server). In the folder there's a trained model for testing the new data.
+9. Click on Send to Labeler which will return back the labelled json object for each product in the Web Scraper console.
 
 ## Contributing
 1. Fork it!
