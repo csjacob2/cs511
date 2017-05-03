@@ -3,6 +3,7 @@ from flask_cors import CORS, cross_origin
 from tokenizer import tokenizer
 from testParser import parse
 import subprocess
+import sys
 
 app = Flask(__name__)
 
@@ -34,4 +35,4 @@ def hello():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="127.0.0.1", port=sys.argv[1])
