@@ -1,5 +1,3 @@
-<snippet>
-  <content><![CDATA[
 # ${1:Web Data View Chrome Extractor - Team Nexus}
 This tool selects the titles of **hard drives**, predicts the labels and displays them in a tabular manner.
 ## Mentor
@@ -50,7 +48,6 @@ Parent Selectors: _root (selected)
 ## History
 TODO: Write history
 ## Credits
+Mentor - Long Tuan Pham
 Arpit Garg, Cassandra Jacobs, Chen Zhang, Revanth Reddy
-]]></content>
-  <tabTrigger>readme</tabTrigger>
-</snippet>
+
