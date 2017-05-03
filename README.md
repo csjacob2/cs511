@@ -34,7 +34,7 @@ Parent Selectors: _root (selected)
 
 6. Selecting “Element preview” in the Sitemap screen will highlight the elements that fit the selector criteria. Selecting “Data preview” will give a preliminary data scrape.
 7. To run the Scrape, select “Sitemap” (make sure your sitemap name is next to it in the main menu), then “Scrape”, then “Start scraping”. A list will be produced.
-8. In the main directory, do `python chrome.py portNumber` which will start the flask server.(Pass your own port number to start the server). In the folder there's a trained model for testing the new data.
+8. In the main directory, do `python chrome.py 5000` which will start the flask server. In the folder there's a trained model for testing the new data.
 9. Click on Send to Labeler which will return back the labelled json object for each product in the Web Scraper console.
 
 ## Contributing
