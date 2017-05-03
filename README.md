@@ -37,6 +37,13 @@ Parent Selectors: _root (selected)
 8. In the main directory, do `python chrome.py 5000` which will start the flask server. In the folder there's a trained model for testing the new data.
 9. Click on Send to Labeler which will return back the labelled json object for each product in the Web Scraper console.
 
+## What you can contribute?
+
+* Improve usability to allow the output to show as a popup instead and allow user to make changes to errors(if any).
+* Expand the amount of information used by parsing the descriptions and other page contents to give more complete info
+* Allow tool to be used for multiple domains.
+* Create self-improving models that allow user feedback and corrections and automatic training of the model.
+
 ## Contributing
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`
