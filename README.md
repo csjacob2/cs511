@@ -1,4 +1,4 @@
-# ${1:Web Data View Chrome Extractor - Team Nexus}
+# Web Data View Chrome Extractor - Team Nexus
 This tool selects the titles of **hard drives**, predicts the labels and displays them in a tabular manner.
 ## Mentor
 Long Tuan Pham
@@ -45,9 +45,7 @@ Parent Selectors: _root (selected)
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :D
-## History
-TODO: Write history
+
 ## Credits
-Mentor - Long Tuan Pham
 Arpit Garg, Cassandra Jacobs, Chen Zhang, Revanth Reddy
 
