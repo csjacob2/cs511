@@ -212,7 +212,7 @@ Sitemap.prototype = {
 
         data.forEach(function (row) {
             columns.forEach(function(column) {
-                string += row[column] + '\n';
+                string += row[column] + '\n\n';
             });
         });
         drawTable(string, []);
@@ -249,6 +249,8 @@ function drawTable (postData, curConstraints) {
         //tests
         //alert(data);
         // end tests
+
+        $('#viewport').append(data);
 
 
         // output is returned as a variable (data)
