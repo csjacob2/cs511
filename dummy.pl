@@ -1,0 +1,1 @@
+perl -ne 'chomp; print "$_\tO\n"' test.tok > test.tsv
