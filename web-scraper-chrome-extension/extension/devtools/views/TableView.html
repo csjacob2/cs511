@@ -14,11 +14,11 @@
     function drawTable() {
         $('#viewport').html('<table id="masterTable"></table>');
 
-        alert ('start');
         var postData = "Samsung 850 EVO 250GB 2.5-Inch SATA III Internal SSD MZ75E250BAM";
 
         $.post("http://127.0.0.1:5000/hello", postData, function(data, status) {
-            alert (data);
+
+            alert ("inside json");
 
             if ($.fn.DataTable.isDataTable('#masterTable')) {
                 $('#masterTable').DataTable().destroy();

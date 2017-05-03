@@ -235,74 +235,70 @@ Sitemap.prototype = {
 
 
 function drawTable (postData, curConstraints) {
-
-    //create empty table in viewport to hold data
-	$('#viewport').html('<table id="masterTable"></table>');
-
-    //TODO: delete this temp data line
-    var tempData = 'model\tcompany\tcolor\ttype\tsize\tport\to\nWD2500AAJS WD2500AAJS\tWestern Digital\tCaviar Blue\t\t\t\tHard Drive\nMy Passport Ultra\tWD\tBlack\tPortable External\t1 TB\tUSB 3.0\t(Old Model) Hard Drive with Auto Backup';
-
-
-/*
-     // send postData to server
-     // return tokenized data
-     $.post("extractPubData.php", postData, function(data, status){
-     $.post( "http://foreverdarkness.ca/cs511/test.php", function() {
-     alert("Data: " + data + "\nStatus: " + status);
-     alert( "success");
-*/
-
-    //TODO: send postData to server
-    // output is returned as a variable (data)
-    // process data in this next block
-
-    alert ('start');
-    var postData = "Samsung 850 EVO 250GB 2.5-Inch SATA III Internal SSD MZ75E250BAM";
-
-
     // create dataTable object
+    $('#viewport').html('<table id="masterTable"></table>');
     if ( $.fn.DataTable.isDataTable('#masterTable') ) {
         $('#masterTable').DataTable().destroy();
     }
     $('#masterTable').empty();
-    $('#viewport').html('<table id="masterTable"></table>');
 
+    // send postData to server
+    // return tokenized data
 
     $.post("http://127.0.0.1:5000/hello", postData, function(data, status) {
-        alert(data);
-        $('#viewport').append(data);
+        //tests
+        //alert(data);
+        // end tests
 
 
-        /*        $('#masterTable').empty();
-         var masterTable = $('#masterTable').DataTable( {
-         data: dataRow,
-         columns: headerRow
+        // output is returned as a variable (data)
+
+        /*
+        // legacy array processing of the table
+        var rows = tempData.split('\n');                     // create array of rows
+        var headerRowTemp = rows[0].split('\t');             // create header row into array of titles
+        var headerRow = [];
+        var dataRow = [];
+
+        $.each(headerRowTemp, function(index, value){
+            headerRow[index] = {};
+            headerRow[index]['title'] = value;
+        });
+
+        for (i = 0; i < rows.length-1; i++) {
+            dataRow[i] = rows[i+1].split('\t');
+        }
+
+        var masterTable = $('#masterTable').DataTable( {
+            data: dataRow,
+            columns: headerRow
+        });
+        // end legacy array processing of the table
+        */
+        // object method of building table -- if we can get the extension/function to stop hanging :(
+        var masterTable = $('#masterTable').DataTable({
+             data: data,
+                 columns: [
+                 {data: "company"},
+                 {data: "model"},
+                 {data: "size"},
+                 {data: "type"},
+                 {data: "port"},
+                 {data: "misc"},
+                 {data: "rate"},
+                 {data: "dimension"},
+                 {data: "speed"},
+                 {data: "color"}
+             ]
          });
-
-         var masterTable = $('#masterTable').DataTable({
-         data: data,
-         columns: [
-         {data: "company"},
-         {data: "model"},
-         {data: "size"},
-         {data: "type"},
-         {data: "port"},
-         {data: "misc"},
-         {data: "rate"},
-         {data: "dimension"},
-         {data: "speed"},
-         {data: "color"}
-         ]
-         });
-         */
-
-        var masterTable = '';
 
         // populate table into viewport
         $('#viewport').append(masterTable);
 
+
     });
-/*
+
+    /* leftover $.ajax calls
      })
      .done(function() {
         // might not need this
@@ -312,5 +308,5 @@ function drawTable (postData, curConstraints) {
         // might not need this
         alert( "error" );
      });
-*/
+    */
 }
