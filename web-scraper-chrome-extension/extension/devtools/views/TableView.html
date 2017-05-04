@@ -1,7 +1,7 @@
 <!DOCTYPE html><html><head><title>TableView test</title></head>
 
-<script src="../../assets/jquery-2.0.3.js"></script>
-<script src="../../assets/datatables/datatables.js"></script>
+<script src="lib/jquery-2.0.3.js"></script>
+<script src="lib/datatables/datatables.js"></script>
 
 <script>
     //test page for working out how to get dataTable to run
@@ -12,41 +12,99 @@
 
 
     function drawTable() {
-        $('#viewport').html('<table id="masterTable"></table>');
+        $('#viewport').html('<table id="masterTable" border="1">' +
+            '<thead><tr>'+
+                 '<th>company</th>' +
+                 '<th>misc</th>' +
+                 '<th>rate</th>' +
+                 '<th>model</th>' +
+                 '<th>type</th>' +
+                 '<th>size</th>' +
+            '</tr></thead></table>');
 
-        var postData = "Samsung 850 EVO 250GB 2.5-Inch SATA III Internal SSD MZ75E250BAM";
+        $.post("data.json", function(data) {
+            var tbl_body = '';
+            var odd_even = false;
+            var tableHeaders = ['company', 'misc', 'rate', 'model', 'type', 'size'];
 
-        $.post("http://127.0.0.1:5000/hello", postData, function(data, status) {
+            $.each(data, function(key, subset){
+                var tbl_row = '';
 
-            alert ("inside json");
+                for (var i = 0; i < tableHeaders.length; i++) {
+
+                    $.each(this, function (key2, harddrives) {
+
+                        //key2 is the column name
+
+                        if (tableHeaders[i] == key2) {
+                            tbl_row += '<td>' + harddrives + '</td>';
+                        } else if (key2.hasOwnProperty(tableHeaders[i])){
+                            tbl_row += '<td> &nbsp; </td>';
+                        }
+                    });
+                }
+
+                tbl_body += "<tr class=\""+( odd_even ? "odd" : "even")+"\">"+tbl_row+"</tr>";
+                odd_even = !odd_even;
+            });
+
+            $("#masterTable").append(tbl_body);
+            $('#masterTable').DataTable();
+
+            /*
+
+            for (var i = 0; i <= Object.keys(data).length; i++) {
+                var harddrive = data[i];
+                for (var key in harddrive) {
+                    if (harddrive.hasOwnProperty(key)) {
+                        $('#viewport').append(key + ' -> ' + harddrive[key] + '<br>');
+                    }
+                }
+            }
 
             if ($.fn.DataTable.isDataTable('#masterTable')) {
                 $('#masterTable').DataTable().destroy();
             }
-            /*        $('#masterTable').empty();
-             var masterTable = $('#masterTable').DataTable( {
-             data: dataRow,
-             columns: headerRow
-             });
+
+            for (var i = 1; i <= Object.keys(data).length; i++) {
+                var harddrive = data[i];
+                for (var key in harddrive) {
+
+                    if (harddrive.hasOwnProperty(key)) {
+                        $('#viewport').append(key + ' -> ' + harddrive[key] + '<br>');
+                    }
+                }
+
+                $('#viewport').append('<br><br>');
+            }
 
             var masterTable = $('#masterTable').DataTable({
-                data: data,
+                'ajax': 'data.json',
                 columns: [
-                    {data: "company"},
-                    {data: "model"},
-                    {data: "size"},
-                    {data: "type"},
-                    {data: "port"},
-                    {data: "misc"},
-                    {data: "rate"},
-                    {data: "dimension"},
-                    {data: "speed"},
-                    {data: "color"}
+                    {"data": "company"},
+                    {"data": "misc"},
+                    {"data": "rate"},
+                    {"data": "model"},
+                    {"data": "type"},
+                    {"data": "size"}
                 ]
-            });
-            */
-            var masterTable  = '';
-            $('#viewport').append(masterTable);
+            });*/
+
+
+/*
+ var masterTable = $('#masterTable').DataTable( {
+        "data": data,
+        "columns": [
+            { "data": "name" },
+            { "data": "position" },
+            { "data": "office" },
+            { "data": "extn" },
+            { "data": "start_date" },
+            { "data": "salary" }
+        ]
+    } );
+
+            $('#viewport').append(masterTable);*/
         });
     }
 

@@ -1,50 +1,45 @@
 {
    "1": {
-      "company": "Seagate",
-      "misc": "SATA",
-      "rate": "6.0Gb/s",
-      "model": "FireCuda,(ST2000LX001)",
-      "type": "Internal",
-      "size": "2TB"
+      "size": "size 2TB",
+      "company": "company Seagate",
+      "misc": "misc SATA",
+      "rate": "rate 6.0Gb/s",
+      "model": "model FireCuda,(ST2000LX001)"
    },
    "2": {
-      "type": "External",
-      "company": "HornetTek,Viper",
-      "misc": "64MB,Cache",
-      "speed": "7200RPM",
-      "port": "USB,3.0",
-      "size": "1TB,(1000GB)"
+      "type": "type External",
+      "company": "company HornetTek,Viper",
+      "misc": "misc 64MB,Cache",
+      "model": "model USB,3.0",
+      "size": "size 1TB,(1000GB)"
    },
    "3": {
-      "port": "USB,3.0",
-      "company": "LaCie",
-      "type": "Portable,External",
-      "model": "Porsche,Design,P'9220,9000459",
-      "size": "2,TB"
+      "rate": "rate USB,3.0",
+      "company": "company LaCie",
+      "type": "type Portable,External",
+      "model": "model Porsche,Design,P'9220,9000459",
+      "size": "size 2,TB"
    },
    "4": {
-      "color": "(Silver)",
-      "company": "Avolusion",
-      "model": "HD250U3,Ultra,Slim,SuperSpeed",
-      "type": "Portable,External",
-      "port": "USB,3.0",
-      "size": "250GB"
+      "rate": "rate (Silver)",
+      "company": "company Avolusion",
+      "model": "model HD250U3,Ultra,Slim,SuperSpeed",
+      "type": "type Portable,External",
+      "misc": "misc USB,3.0",
+      "size": "size 250GB"
    },
    "5": {
-      "port": "USB,3.0",
-      "company": "Seagate",
-      "type": "Portable,External",
-      "model": "Expansion,(STEA1000400)",
-      "size": "1TB"
+      "misc": "misc USB,3.0",
+      "type": "type Portable,External",
+      "model": "model Expansion,(STEA1000400)",
+      "rate": "rate (Silver)",
+      "size": "size 1TB"
    },
    "6": {
-      "color": "Blue",
-      "company": "WD",
-      "misc": "SATA,64MB,Cache",
-      "rate": "6,Gb/s",
-      "model": "(WD10EZEX)",
-      "speed": "7200,RPM",
-      "dimension": "3.5,Inch",
-      "size": "1TB"
+      "type": "type Blue",
+      "company": "company WD",
+      "misc": "misc SATA,64MB,Cache",
+      "rate": "rate 6,Gb/s",
+      "size": "size 1TB"
    }
 }
