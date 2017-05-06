@@ -1,7 +1,7 @@
 <!DOCTYPE html><html><head><title>TableView test</title></head>
 
-<script src="../../assets/jquery-2.0.3.js"></script>
-<script src="../../assets/datatables/datatables.js"></script>
+<script src="lib/jquery-2.0.3.js"></script>
+<script src="lib/datatables/datatables.js"></script>
 
 <script>
     //test page for working out how to get dataTable to run
@@ -26,32 +26,67 @@
             var tbl_body = '';
             var odd_even = false;
             var tableHeaders = ['company', 'misc', 'rate', 'model', 'type', 'size'];
+            var tableArray = new Array;
+            var rowCount = 0;
 
-            $.each(data, function(key, subset){
+
+            $.each(data, function (key, subset) {
                 var tbl_row = '';
 
                 for (var i = 0; i < tableHeaders.length; i++) {
+                    $.each(this, function (key2, harddrives) {
+                        //key2 is the column name
+                        // rowCount in each, counts objects/rows i hope
+                        tableArray[rowCount] = [];
+
+                        if (tableHeaders[i] == key2) {
+                            tableArray[rowCount][i] = harddrives;
+                            //console.log ('tableArray['+rowCount+']['+i+'] = '+harddrives);
+                        }
+
+                        // build row?
+                        // finished on the last header
+                        if (i == tableHeaders.length-1) {
+                            for (var cols = 0; cols < tableHeaders.length; cols++) {
+                                console.log ('tableArray['+rowCount+']['+cols+'] = '+tableArray[rowCount][cols]);
+                                //console.log('tableArray['+headRC+'][' + cols + ']=' + tableArray[headRC][cols]);
+
+
+                            }
+                        }
+                    });
+                    tbl_row += '<td> &nbsp; </td>';
+                }   
+                rowCount++;
+
+
+
+                tbl_body += "<tr class=\"" + ( odd_even ? "odd" : "even") + "\">" + tbl_row + "</tr>";
+                odd_even = !odd_even;
+            });
+
+
+            $("#masterTable").append(tbl_body);
+            $('#masterTable').DataTable();
+
+            /*
 
                     $.each(this, function (key2, harddrives) {
 
                         //key2 is the column name
 
                         if (tableHeaders[i] == key2) {
-                            tbl_row += '<td>' + harddrives + '</td>';
-                        } else if (key2.hasOwnProperty(tableHeaders[i])){
-                            tbl_row += '<td> &nbsp; </td>';
+                            keyMatch = true;
                         }
                     });
+
+               for (var rows = 0; rows < tableArray[rowCount].length; rows++) {
+                    for (var cols = 0; cols < tableArray.length; cols++) {
+                        console.log ('tableArray['+cols+']'+'['+rows+']='+tableArray[cols][rows]);
+                        //tbl_row += '<td>' + tableArray[rows][cols] + '</td>';
+                    }
                 }
 
-                tbl_body += "<tr class=\""+( odd_even ? "odd" : "even")+"\">"+tbl_row+"</tr>";
-                odd_even = !odd_even;
-            });
-
-            $("#masterTable").append(tbl_body);
-            $('#masterTable').DataTable();
-
-            /*
 
             for (var i = 0; i <= Object.keys(data).length; i++) {
                 var harddrive = data[i];
