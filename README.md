@@ -2,6 +2,11 @@
 This tool selects the titles of **hard drives**, predicts the labels and displays them in a tabular manner.
 ## Mentor
 Long Tuan Pham
+##Set up
+1. Set up/install a web server (such as Apache): https://www.apache.org/
+2. Set up/install Python 2.*, including the command line interface (CLI) from http://www.python.org
+3. Ensure python is available in your path variables so it can run the chrome.py flask server (in later steps).
+
 ## Installation
 1. Add extension to Chrome.
 2. Tools -> More tools -> Extensions
